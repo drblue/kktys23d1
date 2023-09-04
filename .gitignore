@@ -1,0 +1,10 @@
+/**/build
+/**/dist
+/**/node_modules
+.htaccess
+*.code-workspace
+*-nogit
+.env
+
+# Local Netlify folder
+.netlify
