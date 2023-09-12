@@ -68,3 +68,71 @@ const printCoords = (pt: Point) => {
 
 console.log(printCoords({ x: 42, y: 1337 }));
 console.log(printCoords({ x: 42, y: 1337, z: 256 }));
+
+// type aliases can be assigned primitive types
+type nummer = number
+let x: nummer = 42
+const sumNum = (a: nummer, b: number) => a + b;
+sumNum(x, 1337) // :number
+
+type stringOrNumber = string | number
+let s: stringOrNumber = 42
+s = "3LiT3"
+
+const makeMoreInteresting = (msg: stringOrNumber) => {
+	return typeof msg === "string"
+		? msg.toUpperCase() + "!!!!!!!"
+		: String(msg) + "!!!!!!!"
+}
+console.log(makeMoreInteresting("lolcats are funny"))
+console.log(makeMoreInteresting(1337))
+// console.log(makeMoreInteresting(["loldogs"])) // not workey
+
+interface IPoint {
+	x: number
+	y: number
+	z?: stringOrNumber
+}
+
+interface IAnimal {
+	name: string
+}
+
+interface IDog extends IAnimal {
+	legs: number
+}
+
+// This will be merged with the above interface without conflicts
+interface IDog extends IAnimal {
+	wagsTail: boolean
+}
+
+type Animal = {
+	name: string
+}
+
+type Dog = Animal & {
+	legs: number
+}
+
+// No cake for you!
+// type Dog = Animal & {
+// 	wagsTail: boolean
+// }
+
+let mrFluffles: Dog = {
+	name: "Mr Fluffles",
+	legs: 4
+}
+
+
+// interface Todo {
+// 	title: string
+// }
+type Todo = {
+	title: string
+}
+
+type TodoList = Todo[]
+
+type SimpleTodos = string[]
