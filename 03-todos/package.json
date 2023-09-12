@@ -1,0 +1,17 @@
+{
+  "name": "03-todos",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "bootstrap": "^5.3.1",
+    "sass": "^1.64.2",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5"
+  }
+}
