@@ -11,11 +11,11 @@ type Todo = {
 	completed: boolean
 }
 
-const todos: Todo[] = [
-	{ title: "Learn about Everyday Types", completed: true },
-	{ title: "Learn about DOM Manipulation", completed: true },
-	{ title: "Learn about typing fetch/axios responses", completed: false },
-]
+// Get JSON of Todos from LocalStorage
+const json = localStorage.getItem('todos') ?? '[]'
+
+// Parse JSON into an array of Todo objects
+const todos: Todo[] = JSON.parse(json)
 
 // Render todos
 const renderTodos = () => {
@@ -26,6 +26,15 @@ const renderTodos = () => {
 			</li>`
 		)
 		.join('')
+}
+
+// Save todos to localStorage
+const saveTodos = () => {
+	// Convert todos-array to JSON
+	const json = JSON.stringify(todos)
+
+	// Save JSON to localStorage
+	localStorage.setItem('todos', json)
 }
 
 // "Create a new Todo" form
@@ -44,6 +53,9 @@ newTodoFormEl.addEventListener('submit', (e) => {
 		title: newTodoTitleEl.value,
 		completed: false,
 	})
+
+	// Save todos to localStorage
+	saveTodos()
 
 	// Re-render todos
 	renderTodos()
