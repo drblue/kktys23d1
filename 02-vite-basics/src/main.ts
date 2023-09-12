@@ -51,3 +51,20 @@ names.push("Alice");
 // names.push(true);
 
 const ages: number[] = [];
+
+// const printcoords = (pt: { x: number, y: number, z?: number }) => {
+// 	return `x=${pt.x}, y=${pt.y}, z=${pt.z}`;
+// }
+
+type Point = {
+	x: number,
+	y: number,
+	z?: number
+}
+
+const printCoords = (pt: Point) => {
+	return `x=${pt.x}, y=${pt.y}, z=${pt.z}`;
+}
+
+console.log(printCoords({ x: 42, y: 1337 }));
+console.log(printCoords({ x: 42, y: 1337, z: 256 }));
