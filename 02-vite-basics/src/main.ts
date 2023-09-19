@@ -154,3 +154,17 @@ const makeHttpRequest = (method: HttpVerbs, endpoint: string) => {
 
 // makeHttpRequest("OMG", "/memes")  // will throw Type Exception
 makeHttpRequest("GET", "/memes")
+
+/**
+ * Tuples
+ */
+type DivisionResult = [number, number]
+
+const divide = (a: number, b: number): DivisionResult => {
+	const floored = Math.floor(a / b) // 10 / 3 = 3
+	const remainder = a % b // 10 % 3 = 1
+
+	return [floored, remainder]
+}
+
+const [tenByThreeInt, tenByThreeMod] = divide(10, 3)
