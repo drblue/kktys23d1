@@ -9,4 +9,7 @@ export const getTodos = async () => {
 	return response.data
 }
 
-export const createTodo = async () => {}
+export const createTodo = async (newTodo: Todo) => {
+	const response = await axios.post<Todo>("http://localhost:3000/todos", newTodo)
+	return response.data
+}

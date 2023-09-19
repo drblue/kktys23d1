@@ -9,6 +9,11 @@
       "id": 2,
       "title": "Learn async TypeScript",
       "completed": false
+    },
+    {
+      "title": "Learn about promises in TypeScript 🤩",
+      "completed": false,
+      "id": 3
     }
   ]
 }

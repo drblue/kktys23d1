@@ -1,11 +1,12 @@
-import { getTodos } from './api'
+import { getTodos, createTodo } from './api'
 import { Todo } from './todo.types'
 import "./assets/scss/app.scss"
 
 const todosEl = document.querySelector<HTMLUListElement>("#todos")!
 const newTodoFormEl = document.querySelector<HTMLFormElement>("#new-todo-form")!
 
-const todos: Todo[] = await getTodos()
+// Get todos from API
+let todos: Todo[] = await getTodos()
 
 // Render todos
 const renderTodos = () => {
@@ -18,28 +19,20 @@ const renderTodos = () => {
 		.join('')
 }
 
-// Save todos to localStorage
-const saveTodos = () => {
-	// Convert todos-array to JSON
-	const json = JSON.stringify(todos)
-
-	// Save JSON to localStorage
-	localStorage.setItem('todos', json)
-}
-
 // "Create a new Todo" form
-newTodoFormEl.addEventListener('submit', (e) => {
+newTodoFormEl.addEventListener('submit', async (e) => {
 	e.preventDefault()
 
 	const newTodoTitleEl = document.querySelector<HTMLInputElement>("#new-todo-title")!
 
-	todos.push({
+	// POST todo to API
+	await createTodo({
 		title: newTodoTitleEl.value,
 		completed: false,
 	})
 
-	// Save todos to localStorage
-	saveTodos()
+	// Get the todos from API (including the newly created todo)
+	todos = await getTodos()
 
 	// Re-render todos
 	renderTodos()
