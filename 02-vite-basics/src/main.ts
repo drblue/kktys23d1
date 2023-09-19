@@ -136,3 +136,21 @@ type Todo = {
 type TodoList = Todo[]
 
 type SimpleTodos = string[]
+
+
+/**
+ * Literal Types
+ */
+type AllowedGitHubUsernames = "drblue" | "pelle"
+
+let githubUsername: AllowedGitHubUsernames = "drblue"
+//           ^?
+
+type HttpVerbs = "GET" | "POST" | "PATCH" | "PUT" | "DELETE" | "OPTIONS" | "HEAD"
+
+const makeHttpRequest = (method: HttpVerbs, endpoint: string) => {
+	return `Would ${method} from/to ${endpoint}`
+}
+
+// makeHttpRequest("OMG", "/memes")  // will throw Type Exception
+makeHttpRequest("GET", "/memes")
