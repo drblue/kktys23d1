@@ -1,18 +1,11 @@
+import { getTodos } from './api'
+import { Todo } from './todo.types'
 import "./assets/scss/app.scss"
 
 const todosEl = document.querySelector<HTMLUListElement>("#todos")!
 const newTodoFormEl = document.querySelector<HTMLFormElement>("#new-todo-form")!
 
-type Todo = {
-	title: string
-	completed: boolean
-}
-
-// Get JSON of Todos from LocalStorage
-const json = localStorage.getItem('todos') ?? '[]'
-
-// Parse JSON into an array of Todo objects
-const todos: Todo[] = JSON.parse(json)
+const todos: Todo[] = await getTodos()
 
 // Render todos
 const renderTodos = () => {
