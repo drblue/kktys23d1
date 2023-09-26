@@ -4,9 +4,22 @@
 import axios from 'axios'
 import { NewTodo, PartialTodo, Todo } from './todo.types'
 
-export const getTodos = async () => {
-	const response = await axios.get<Todo[]>("http://localhost:3000/todos")
+/**
+ * Make a generic HTTP GET request.
+ *
+ * @param endpoint Endpoint to get
+ * @returns
+ */
+const get = async <T>(endpoint: string) => {
+	const response = await axios.get<T>(endpoint)
 	return response.data
+}
+
+export const getTodos = () => {
+	return get<Todo[]>("http://localhost:3000/todos")
+}
+export const getTodo = (id: number) => {
+	return get<Todo>("http://localhost:3000/todos/" + id)
 }
 
 export const createTodo = async (newTodo: NewTodo) => {
