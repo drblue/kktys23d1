@@ -6,6 +6,7 @@ import {
 } from "./api";
 import { Todo } from "./todo.types";
 import "./assets/scss/app.scss";
+import { AxiosError } from "axios";
 
 const todosEl = document.querySelector<HTMLUListElement>("#todos")!;
 const newTodoFormEl = document.querySelector<HTMLFormElement>("#new-todo-form")!;
@@ -16,10 +17,22 @@ let todos: Todo[] = [];
 // Get todos from API
 const getTodos = async () => {
 	// Fetch todos from server and update local copy
-	todos = await TodosAPI_getTodos();
+	try {
+		todos = await TodosAPI_getTodos();
 
-	// Render todos
-	renderTodos();
+		// Render todos
+		renderTodos();
+	} catch (err) {
+		if (err instanceof AxiosError) {
+			alert("Something wrong with the network. Please try again later.")
+
+		} else if (err instanceof Error) {
+			alert("Something unexpected happened. Isn't it exciting?")
+
+		} else {
+			alert("This should never happen.")
+		}
+	}
 };
 
 // Render todos
