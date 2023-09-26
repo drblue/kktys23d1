@@ -8,7 +8,7 @@
     {
       "id": 2,
       "title": "Learn async TypeScript",
-      "completed": false
+      "completed": true
     },
     {
       "title": "Learn about promises in TypeScript 🤩",
@@ -19,6 +19,11 @@
       "title": "Fight with TS Config about top-level await",
       "completed": false,
       "id": 4
+    },
+    {
+      "title": "Learn about naming things correctly",
+      "completed": false,
+      "id": 5
     }
   ]
 }

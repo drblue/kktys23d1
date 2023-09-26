@@ -1,9 +1,16 @@
 @import "bootstrap/scss/bootstrap";
 
-.completed {
-	font-style: italic;
-	text-decoration: line-through;
-	color: #888;
+.list-group-item {
+	display: flex;
+	justify-content: space-between;
+
+	&.completed {
+		.todo-title {
+			font-style: italic;
+			text-decoration: line-through;
+			color: #888;
+		}
+	}
 }
 
 #todos {

@@ -1,4 +1,8 @@
-import { getTodos as TodosAPI_getTodos, createTodo as TodosAPI_createTodos } from "./api";
+import {
+	getTodos as TodosAPI_getTodos,
+	createTodo as TodosAPI_createTodos,
+	updateTodo as TodosAPI_updateTodo,
+} from "./api";
 import { Todo } from "./todo.types";
 import "./assets/scss/app.scss";
 
@@ -20,14 +24,43 @@ const getTodos = async () => {
 // Render todos
 const renderTodos = () => {
 	todosEl.innerHTML = todos
-		.map(
-			(todo) =>
-				`<li class="list-group-item ${todo.completed ? "completed" : ""}">
-				${todo.title}
+		.map((todo) =>
+			`<li class="list-group-item ${todo.completed ? "completed" : ""}" data-todo-id="${todo.id}">
+				<span class="todo-title">${todo.title}</span>
+				<div class="btn-group">
+					<button class="btn btn-outline-primary btn-sm action-toggle">Toggle</button>
+					<button class="btn btn-outline-warning btn-sm action-edit">Edit</button>
+					<button class="btn btn-outline-danger btn-sm action-delete">Delete</button>
+				</div>
 			</li>`
 		)
 		.join("");
 };
+
+// Listen for toggle of todo
+todosEl.addEventListener('click', async (e) => {
+	// Find todo id
+	const target = e.target as HTMLElement
+
+	if (target.classList.contains("action-toggle")) {
+		const todoId = Number(target.parentElement?.parentElement?.dataset.todoId!)
+
+		// find the todo object
+		const todo = todos.find(todo => todo.id === todoId)
+		if (!todo) {
+			return
+		}
+
+		// Update todo
+		await TodosAPI_updateTodo(todoId, {
+			completed: !todo.completed
+		})
+
+		// Get updated list
+		getTodos()
+	}
+
+})
 
 // "Create a new Todo" form
 newTodoFormEl.addEventListener("submit", async (e) => {
