@@ -14,6 +14,11 @@
       "title": "Learn about promises in TypeScript 🤩",
       "completed": false,
       "id": 3
+    },
+    {
+      "title": "Fight with TS Config about top-level await",
+      "completed": false,
+      "id": 4
     }
   ]
 }
