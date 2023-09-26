@@ -2,6 +2,7 @@ import {
 	getTodos as TodosAPI_getTodos,
 	createTodo as TodosAPI_createTodos,
 	updateTodo as TodosAPI_updateTodo,
+	deleteTodo as TodosAPI_deleteTodo,
 } from "./api";
 import { Todo } from "./todo.types";
 import "./assets/scss/app.scss";
@@ -81,8 +82,28 @@ todosEl.addEventListener('click', async (e) => {
 
 		// Get updated list
 		getTodos()
-	}
 
+	} else if (target.classList.contains("action-delete")) {
+		const todoId = Number(target.parentElement?.parentElement?.dataset.todoId!)
+
+		// find the todo object
+		const todo = todos.find(todo => todo.id === todoId)
+		if (!todo) {
+			return
+		}
+
+		// Ask user if sure
+		const proceed = confirm("U SURE BRO?!")
+		if (!proceed) {
+			return
+		}
+
+		// Delete todo
+		await TodosAPI_deleteTodo(todoId)
+
+		// Get updated list
+		getTodos()
+	}
 })
 
 // "Create a new Todo" form

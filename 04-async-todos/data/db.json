@@ -21,24 +21,9 @@
       "id": 4
     },
     {
-      "title": "Learn about naming things better",
+      "title": "Learn about naming things A LOT better",
       "completed": false,
       "id": 5
-    },
-    {
-      "title": "Fight with TS Config about top-level await",
-      "completed": false,
-      "id": 6
-    },
-    {
-      "title": "Fight with TS Config about top-level await",
-      "completed": false,
-      "id": 7
-    },
-    {
-      "title": "Fight with TS Config about top-level await",
-      "completed": false,
-      "id": 8
     }
   ]
 }

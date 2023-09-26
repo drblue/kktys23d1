@@ -18,3 +18,8 @@ export const updateTodo = async (id: number, data: PartialTodo) => {
 	const response = await axios.patch<Todo>(`http://localhost:3000/todos/${id}`, data)
 	return response.data
 }
+
+export const deleteTodo = async (id: number) => {
+	const response = await axios.delete(`http://localhost:3000/todos/${id}`)
+	return response.data
+}
