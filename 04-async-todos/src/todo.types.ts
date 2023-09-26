@@ -14,3 +14,5 @@ export type Todo = {
 // }
 export type NewTodo = Omit<Todo, "id">
 //              ^?
+
+export type PartialTodo = Partial<NewTodo>

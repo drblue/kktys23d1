@@ -2,7 +2,7 @@
  * All communication with the backend (`json-server`)
  */
 import axios from 'axios'
-import { NewTodo, Todo } from './todo.types'
+import { NewTodo, PartialTodo, Todo } from './todo.types'
 
 export const getTodos = async () => {
 	const response = await axios.get<Todo[]>("http://localhost:3000/todos")
@@ -14,7 +14,7 @@ export const createTodo = async (newTodo: NewTodo) => {
 	return response.data
 }
 
-export const updateTodo = async (id: number, data: any) => {
+export const updateTodo = async (id: number, data: PartialTodo) => {
 	const response = await axios.patch<Todo>(`http://localhost:3000/todos/${id}`, data)
 	return response.data
 }

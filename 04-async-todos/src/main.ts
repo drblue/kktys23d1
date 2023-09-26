@@ -58,6 +58,29 @@ todosEl.addEventListener('click', async (e) => {
 
 		// Get updated list
 		getTodos()
+
+	} else if (target.classList.contains("action-edit")) {
+		const todoId = Number(target.parentElement?.parentElement?.dataset.todoId!)
+
+		// find the todo object
+		const todo = todos.find(todo => todo.id === todoId)
+		if (!todo) {
+			return
+		}
+
+		// Ask user about new title
+		const title = prompt("What's the new title?", todo.title)
+		if (!title) {
+			return
+		}
+
+		// Update todo
+		await TodosAPI_updateTodo(todoId, {
+			title,
+		})
+
+		// Get updated list
+		getTodos()
 	}
 
 })
