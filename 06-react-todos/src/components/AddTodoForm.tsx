@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
@@ -10,6 +10,7 @@ interface AddTodoFormProps {
 
 const AddTodoForm: React.FC<AddTodoFormProps> = ({ onAddTodo }) => {
 	const [newTodoTitle, setNewTodoTitle] = useState("")
+	const newTodoTitleRef = useRef<HTMLInputElement>(null)
 
 	const handleSubmit = (e: React.FormEvent) => {
 		// Stop form from submitting
@@ -28,6 +29,11 @@ const AddTodoForm: React.FC<AddTodoFormProps> = ({ onAddTodo }) => {
 		setNewTodoTitle("")
 	}
 
+	// On component mount, focus on input field
+	useEffect(() => {
+		newTodoTitleRef.current?.focus()
+	}, [])
+
 	return (
 		<Form onSubmit={handleSubmit} className="mb-4">
 			<InputGroup className="mb-3">
@@ -36,6 +42,7 @@ const AddTodoForm: React.FC<AddTodoFormProps> = ({ onAddTodo }) => {
 					aria-label="Title of the new Todo"
 					aria-describedby="btnCreate"
 					onChange={e => setNewTodoTitle(e.target.value)}
+					ref={newTodoTitleRef}
 					value={newTodoTitle}
 				/>
 
