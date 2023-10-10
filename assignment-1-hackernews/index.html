@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<link rel="icon" href="https://fav.farm/📝" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>assignment-1-hackernews</title>
+</head>
+
+<body class="bg-dark text-white">
+	<div id="app" class="container my-3">
+		<h1 class="mb-4"><span class="me-1">🔎🔦👀</span> Search Hacker News</h1>
+
+		<form id="searchForm" class="mb-4">
+			<div class="input-group">
+				<input
+					id="searchInput"
+					type="text"
+					class="form-control"
+					placeholder="Enter your search query"
+					aria-label="Search query"
+				/>
+				<button class="btn btn-primary" type="submit" id="searchBtn">Search</button>
+				<button class="btn btn-warning" type="reset" id="resetBtn">Reset</button>
+			</div>
+		</form>
+
+		<div id="loadingSpinner" class="spinner-border text-light hidden" role="status">
+			<span class="visually-hidden">Loading...</span>
+		</div>
+
+		<div id="searchResult" class="hidden">
+			<p>Showing results for <span id="searchQuery"></span>...</p>
+
+			<div id="searchResultList" class="list-group mt-4">
+				<a href="#" class="list-group-item list-group-item-action">
+					<h2 class="h5 mb-1">List group item heading</h2>
+					<p class="text-muted-small mb-0">POINTS points by AUTHOR at TIME</p>
+				</a>
+			</div>
+
+			<div id="searchResultPagination" class="mt-4 d-flex justify-content-between">
+				<button class="btn btn-primary" type="button" id="prevBtn">Prev</button>
+				<span id="page"></span>
+				<button class="btn btn-primary" type="button" id="nextBtn">Next</button>
+			</div>
+		</div>
+	</div>
+
+	<script type="module" src="/src/main.ts"></script>
+</body>
+</html>
