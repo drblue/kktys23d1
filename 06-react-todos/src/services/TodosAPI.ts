@@ -5,6 +5,7 @@ import axios from 'axios'
 import { Todo } from '../types/Todo.types.ts'
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000'
+const FAKE_DELAY = 1500
 
 // Create a new axios instance
 const instance = axios.create({
@@ -24,6 +25,10 @@ const instance = axios.create({
  */
 const get = async <T>(endpoint: string) => {
 	const response = await instance.get<T>(endpoint)
+
+	// Simulate a delay
+	!!FAKE_DELAY && await new Promise(r => setTimeout(r, FAKE_DELAY))
+
 	return response.data
 }
 
