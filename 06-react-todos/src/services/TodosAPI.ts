@@ -2,7 +2,7 @@
  * Service for communicating with the json-server backend
  */
 import axios from 'axios'
-import { Todo } from '../types/Todo.types.ts'
+import { NewTodo, Todo } from '../types/Todo.types.ts'
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000'
 const FAKE_DELAY = 1500
@@ -33,8 +33,26 @@ const get = async <T>(endpoint: string) => {
 }
 
 /**
+ * Execute a generic HTTP POST request.
+ *
+ * @param endpoint Endpoint to HTTP POST
+ * @param data Data to POST
+ */
+const post = async <Payload, Response = unknown>(endpoint: string, data: Payload) => {
+	const response = await instance.post<Response>(endpoint, data)
+	return response.data
+}
+
+/**
  * Get all todos
  */
 export const getTodos = () => {
 	return get<Todo[]>("/todos")
+}
+
+/**
+ * Create a todo
+ */
+export const createTodo = (todo: NewTodo) => {
+	return post<NewTodo, Todo>("/todos", todo)
 }
