@@ -26,3 +26,9 @@ Skapa/ändra sedan enligt filerna i `denna` commit.
 ```bash
 npm run dev
 ```
+
+## Starta server
+
+```bash
+npm run server
+```
