@@ -1,12 +1,10 @@
 import express from "express";
+import { handleGetRootRequest } from "./controllers/root";
 
 const app = express();
 
 // Respond to `GET /` requests
-app.get("/", (req, res) => {
-	console.log("Someone requested my root");
-	res.send({ "message": "I AM (G)ROOT" });
-});
+app.get("/", handleGetRootRequest);
 
 // Listen for incoming requests
 app.listen(3000, () => {
