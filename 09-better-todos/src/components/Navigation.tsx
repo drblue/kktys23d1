@@ -7,7 +7,7 @@ const Navigation = () => {
 	return (
 		<Navbar bg="dark" variant="dark" expand="md">
 			<Container>
-				<Navbar.Brand as={Link} to="/">📝 React Todos</Navbar.Brand>
+				<Navbar.Brand as={Link} to="/">🕵🏻‍♂️ Better Todos</Navbar.Brand>
 
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
