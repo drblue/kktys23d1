@@ -1,21 +1,17 @@
-import { useQuery } from '@tanstack/react-query'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Spinner from 'react-bootstrap/Spinner'
 import Success from '../components/alerts/Success'
 import Warning from '../components/alerts/Warning'
 import AddTodoForm from '../components/AddTodoForm'
 import TodoListItem from '../components/TodoListItem'
+import useTodos from '../hooks/useTodos'
 import {
 	createTodo as TodosAPI_createTodo,
-	getTodos as TodosAPI_getTodos,
 } from '../services/TodosAPI'
 import { NewTodo } from '../types/Todo.types'
 
 const TodosPage = () => {
-	const { data: todos, isError, isLoading, refetch } = useQuery({
-		queryKey: ["todos"],
-		queryFn: TodosAPI_getTodos,
-	})
+	const { data: todos, isError, isLoading, refetch } = useTodos()
 
 	// Create a new todo in the API
 	const addTodo = async (todo: NewTodo) => {
