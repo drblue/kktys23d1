@@ -11,6 +11,7 @@
     "server": "json-server --watch data/db.json --port 3000"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.0.5",
     "axios": "^1.5.1",
     "bootstrap": "^5.3.2",
     "json-server": "^0.17.4",
@@ -21,6 +22,7 @@
     "sass": "^1.69.1"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.0.5",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",

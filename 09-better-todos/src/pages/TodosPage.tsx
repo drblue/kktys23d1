@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Spinner from 'react-bootstrap/Spinner'
 import Success from '../components/alerts/Success'
@@ -9,37 +9,29 @@ import {
 	createTodo as TodosAPI_createTodo,
 	getTodos as TodosAPI_getTodos,
 } from '../services/TodosAPI'
-import { NewTodo, Todo } from '../types/Todo.types'
+import { NewTodo } from '../types/Todo.types'
 
 const TodosPage = () => {
-	const [todos, setTodos] = useState<Todo[] | null>(null)
-	const [isLoading, setIsLoading] = useState(true)
+	const { data: todos, isError, isLoading, refetch } = useQuery({
+		queryKey: ["todos"],
+		queryFn: TodosAPI_getTodos,
+	})
 
 	// Create a new todo in the API
 	const addTodo = async (todo: NewTodo) => {
 		await TodosAPI_createTodo(todo)
 
 		// get todos
-		getTodos()
+		refetch()
 	}
-
-	// Get todos from the API
-	const getTodos = async () => {
-		const data = await TodosAPI_getTodos()
-		setTodos(data)
-		setIsLoading(false)
-	}
-
-	// Fetch todos when App is being mounted
-	useEffect(() => {
-		getTodos()
-	}, [])
 
 	return (
 		<>
 			<h1 className="mb-3">Todos</h1>
 
 			<AddTodoForm onAddTodo={addTodo} />
+
+			{isError && <Warning heading="Bollocks!">Something went terribly wrong, sorry about that</Warning>}
 
 			{isLoading && <Spinner />}
 
