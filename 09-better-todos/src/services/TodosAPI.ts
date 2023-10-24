@@ -1,0 +1,58 @@
+/**
+ * Service for communicating with the json-server backend
+ */
+import axios from 'axios'
+import { NewTodo, Todo } from '../types/Todo.types.ts'
+
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000'
+const FAKE_DELAY = 1500
+
+// Create a new axios instance
+const instance = axios.create({
+	baseURL: BASE_URL,
+	timeout: 10000,
+	headers: {
+		"Content-Type": "application/json",
+		"Accept": "application/json"
+	}
+})
+
+/**
+ * Make a generic HTTP GET request.
+ *
+ * @param endpoint Endpoint to get
+ * @returns
+ */
+const get = async <T>(endpoint: string) => {
+	const response = await instance.get<T>(endpoint)
+
+	// Simulate a delay
+	!!FAKE_DELAY && await new Promise(r => setTimeout(r, FAKE_DELAY))
+
+	return response.data
+}
+
+/**
+ * Execute a generic HTTP POST request.
+ *
+ * @param endpoint Endpoint to HTTP POST
+ * @param data Data to POST
+ */
+const post = async <Payload, Response = unknown>(endpoint: string, data: Payload) => {
+	const response = await instance.post<Response>(endpoint, data)
+	return response.data
+}
+
+/**
+ * Get all todos
+ */
+export const getTodos = () => {
+	return get<Todo[]>("/todos")
+}
+
+/**
+ * Create a todo
+ */
+export const createTodo = (todo: NewTodo) => {
+	return post<NewTodo, Todo>("/todos", todo)
+}
