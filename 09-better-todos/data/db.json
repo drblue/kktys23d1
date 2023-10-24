@@ -19,6 +19,11 @@
       "title": "Learn Basic TypeScript in React",
       "completed": false,
       "id": 4
+    },
+    {
+      "title": "Learn TanStack React Query 🤩",
+      "completed": false,
+      "id": 5
     }
   ]
 }
